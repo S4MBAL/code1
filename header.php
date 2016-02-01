@@ -4,7 +4,7 @@
  *
  * Displays all of the <head> section and everything up till <div id="content">
  *
- * @package WPCharming
+ * @package Law16
  */
 global $wpc_option;
 ?><!DOCTYPE html>
@@ -19,7 +19,7 @@ global $wpc_option;
 
 <body <?php body_class(); ?>>
 <div id="page" class="hfeed site">
-	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'wpcharming' ); ?></a>	
+	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'law16' ); ?></a>	
 	<header id="masthead" class="site-header" role="banner">
 		<div class="container">
 			<?php if(has_nav_menu('topbar')) { ?>
@@ -29,9 +29,9 @@ global $wpc_option;
 			<?php }	?>
 			<div class="header-left">
 				<div class="site-branding">
-					<?php if ( wpcharming_option('site_logo', false, 'url') !== '' ) { ?>
+					<?php if ( law16_option('site_logo', false, 'url') !== '' ) { ?>
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-						<img src="<?php echo wpcharming_option('site_logo', false, 'url'); ?>" alt="<?php get_bloginfo( 'name' ) ?>" />
+						<img src="<?php echo law16_option('site_logo', false, 'url'); ?>" alt="<?php get_bloginfo( 'name' ) ?>" />
 					</a>
 					<?php } else { ?>
 					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
@@ -50,7 +50,7 @@ global $wpc_option;
 			<?php } ?>
 		</div>
 	</header><!-- #masthead -->
-	<nav id="site-navigation" class="main-navigation <?php if ( wpcharming_option('header_fixed') ) echo 'fixed-on' ?>" role="navigation">
+	<nav id="site-navigation" class="main-navigation <?php if ( law16_option('header_fixed') ) echo 'fixed-on' ?>" role="navigation">
 		<div class="container">
 			<?php if(has_nav_menu('primary')) { ?>
 			<div id="nav-toggle"><i class="fa fa-bars"></i></div>

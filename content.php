@@ -1,6 +1,6 @@
 <?php
 /**
- * @package WPCharming
+ * @package Law16
  */
 ?>
 
@@ -19,7 +19,7 @@
 
 		<?php if ( 'post' == get_post_type() ) : ?>
 		<div class="entry-meta">
-			<?php wpcharming_posted_on(); ?>
+			<?php law16_posted_on(); ?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
@@ -28,14 +28,14 @@
 		<?php
 			/* translators: %s: Name of current post */
 			the_content( sprintf(
-				__( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'wpcharming' ),
+				__( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'law16' ),
 				the_title( '<span class="screen-reader-text">"', '"</span>', false )
 			) );
 		?>
 
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'wpcharming' ),
+				'before' => '<div class="page-links">' . __( 'Pages:', 'law16' ),
 				'after'  => '</div>',
 			) );
 		?>

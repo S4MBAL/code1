@@ -8,14 +8,17 @@
  * E.g., it puts together the home page when no home.php file exists.
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package WPCharming
+ * @package Law16
  */
+
+/* cleanup: */
+if (!defined('ABSPATH')) header( 'Location: http://' . $_SERVER['SERVER_NAME'] . '/' );
 
 get_header(); ?>
 
-		<?php wpcharming_breadcrumb(); ?>
+		<?php law16_breadcrumb(); ?>
 
-		<div id="content-wrap" class="container <?php echo wpcharming_get_layout_class(); ?>">
+		<div id="content-wrap" class="container <?php echo law16_get_layout_class(); ?>">
 			<div id="primary" class="content-area">
 				<main id="main" class="site-main" role="main">
 
@@ -34,7 +37,7 @@ get_header(); ?>
 
 					<?php endwhile; ?>
 
-					<?php wpcharming_paging_nav(); ?>
+					<?php law16_paging_nav(); ?>
 
 				<?php else : ?>
 
@@ -45,7 +48,7 @@ get_header(); ?>
 				</main><!-- #main -->
 			</div><!-- #primary -->
 
-			<?php echo wpcharming_frontpage_sidebar(); ?>
+			<?php echo law16_frontpage_sidebar(); ?>
 			
 		</div> <!-- /#content-wrap -->
 

@@ -7,22 +7,22 @@
  * and that other 'pages' on your WordPress site will use a
  * different template.
  *
- * @package WPCharming
+ * @package Law16
  */
 $page_layout  = get_post_meta( $post->ID, '_wpc_page_layout', true );
 $page_breadcrumb = get_post_meta( $post->ID, '_wpc_hide_breadcrumb', true );
-$page_comment = wpcharming_option('page_comments');
+$page_comment = law16_option('page_comments');
 
 get_header(); ?>
 		
 		<?php 
 		global $post;
-		wpcharming_get_page_header($post->ID); 
+		law16_get_page_header($post->ID); 
 		?>
 		
-		<?php if ( $page_breadcrumb !== 'on' ) wpcharming_breadcrumb(); ?>
+		<?php if ( $page_breadcrumb !== 'on' ) law16_breadcrumb(); ?>
 
-		<div id="content-wrap" class="<?php echo ( $page_layout == 'full-screen' ) ? '' : 'container'; ?> <?php echo wpcharming_get_layout_class(); ?>">
+		<div id="content-wrap" class="<?php echo ( $page_layout == 'full-screen' ) ? '' : 'container'; ?> <?php echo law16_get_layout_class(); ?>">
 			<div id="primary" class="<?php echo ( $page_layout == 'full-screen' ) ? 'content-area-full' : 'content-area'; ?>">
 				<main id="main" class="site-main" role="main">
 
@@ -44,7 +44,7 @@ get_header(); ?>
 				</main><!-- #main -->
 			</div><!-- #primary -->
 			
-			<?php echo wpcharming_get_sidebar(); ?>
+			<?php echo law16_get_sidebar(); ?>
 				
 		</div> <!-- /#content-wrap -->
 

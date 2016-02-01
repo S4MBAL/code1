@@ -4,29 +4,14 @@
  *
  * Eventually, some of the functionality here could be replaced by core features
  *
- * @package WPCharming
+ * @package Law16
  */
 
 /**
  * Automatic theme updates notifications
  *
  */
-/* added by sonang */
-// if ( ! function_exists( 'wpcharming_updater' ) ) {
-// 	function wpcharming_updater() {
-// 		global $wpc_option;
-// 		$username = trim( $wpc_option['tf_username'] );
-// 		$api_key  = trim( $wpc_option['tf_api'] );
-// 		if ( ! empty( $username ) && ! empty( $api_key ) ) {
-// 			load_template( get_template_directory() . '/inc/updater/envato-theme-update.php' );
-
-// 			if ( class_exists( 'Envato_Theme_Updater' ) ) {
-// 				Envato_Theme_Updater::init( $username, $api_key, 'WPCharming' );
-// 			}
-// 		}
-// 	}
-// 	add_action( 'after_setup_theme', 'wpcharming_updater' );
-// }
+/* cleanup: */
 
 /**
  * Get our wp_nav_menu() fallback, wp_page_menu(), to show a home link.
@@ -34,11 +19,11 @@
  * @param array $args Configuration arguments.
  * @return array
  */
-function wpcharming_page_menu_args( $args ) {
+function law16_page_menu_args( $args ) {
 	$args['show_home'] = true;
 	return $args;
 }
-add_filter( 'wp_page_menu_args', 'wpcharming_page_menu_args' );
+add_filter( 'wp_page_menu_args', 'law16_page_menu_args' );
 
 /**
  * Adds custom classes to the array of body classes.
@@ -46,7 +31,7 @@ add_filter( 'wp_page_menu_args', 'wpcharming_page_menu_args' );
  * @param array $classes Classes for the body element.
  * @return array
  */
-function wpcharming_body_classes( $classes ) {
+function law16_body_classes( $classes ) {
 
 	global $woocommerce;
 	global $post;
@@ -64,13 +49,13 @@ function wpcharming_body_classes( $classes ) {
 	}
 
 	// Boxed Layout
-	if ( wpcharming_option('site_boxed') || (isset($_REQUEST['boxed_layout']) && $_REQUEST['boxed_layout'] = 'enable' ) ) {
+	if ( law16_option('site_boxed') || (isset($_REQUEST['boxed_layout']) && $_REQUEST['boxed_layout'] = 'enable' ) ) {
 		$classes[] = 'layout-boxed';
 	}
 
 	return $classes;
 }
-add_filter( 'body_class', 'wpcharming_body_classes' );
+add_filter( 'body_class', 'law16_body_classes' );
 
 /**
  * Adds custom classes to main content.
@@ -78,14 +63,14 @@ add_filter( 'body_class', 'wpcharming_body_classes' );
  * @param array $classes Classes for the body element.
  * @return array
  */
-function wpcharming_get_layout_class() {
+function law16_get_layout_class() {
 	global $post;
 	global $woocommerce;
 	$classes              = 'right-sidebar';
-	$page_layout_admin    = wpcharming_option('page_layout');
-	$archive_layout_admin = wpcharming_option('archive_layout');
-	$blog_layout_admin    = wpcharming_option('blog_layout');
-	$single_shop_layout   = wpcharming_option('single_shop_layout');
+	$page_layout_admin    = law16_option('page_layout');
+	$archive_layout_admin = law16_option('archive_layout');
+	$blog_layout_admin    = law16_option('blog_layout');
+	$single_shop_layout   = law16_option('single_shop_layout');
 
 	// Pages
 	if ( is_page() ){
@@ -171,24 +156,24 @@ function wpcharming_get_layout_class() {
  * @global WP_Query $wp_query WordPress Query object.
  * @return void
  */
-function wpcharming_setup_author() {
+function law16_setup_author() {
 	global $wp_query;
 
 	if ( $wp_query->is_author() && isset( $wp_query->post ) ) {
 		$GLOBALS['authordata'] = get_userdata( $wp_query->post->post_author );
 	}
 }
-add_action( 'wp', 'wpcharming_setup_author' );
+add_action( 'wp', 'law16_setup_author' );
 
 /**
  * Output the status of widets.
  *
  */
-function wpcharming_sidebar_desc( $sidebar_id ) {
+function law16_sidebar_desc( $sidebar_id ) {
 
 	$desc           = '';
 	$column         = str_replace( 'footer-', '', $sidebar_id );
-	$footer_columns = wpcharming_option('footer_columns');
+	$footer_columns = law16_option('footer_columns');
 
 	if ( $column > $footer_columns ) {
 		$desc = __( 'This widget area is currently disabled. You can enable it Theme Options - Footer section.', 'base' );
@@ -200,7 +185,7 @@ function wpcharming_sidebar_desc( $sidebar_id ) {
 /**
  * Browser detection body_class() output
  */
-function wpcharming_browser_body_class($classes) {
+function law16_browser_body_class($classes) {
         global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
         if($is_lynx) $classes[] = 'lynx';
         elseif($is_gecko) $classes[] = 'gecko';
@@ -223,5 +208,5 @@ function wpcharming_browser_body_class($classes) {
            }
         return $classes;
 }
-add_filter('body_class','wpcharming_browser_body_class');
+add_filter('body_class','law16_browser_body_class');
 

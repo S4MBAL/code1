@@ -1,6 +1,6 @@
 <?php
 /**
- * @package WPCharming
+ * @package Law16
  */
 ?>
 
@@ -19,7 +19,7 @@
 
 		<?php if ( 'post' == get_post_type() ) : ?>
 		<div class="entry-meta">
-			<?php wpcharming_posted_on(); ?>
+			<?php law16_posted_on(); ?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
@@ -32,7 +32,7 @@
 
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'wpcharming' ),
+				'before' => '<div class="page-links">' . __( 'Pages:', 'law16' ),
 				'after'  => '</div>',
 			) );
 		?>

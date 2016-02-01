@@ -4,7 +4,7 @@
  *
  * Contains the closing of the #content div and all content after
  *
- * @package WPCharming
+ * @package Law16
  */
 
 global $wpc_option;
@@ -18,24 +18,24 @@ global $wpc_option;
 	<div class="footer-connect">
 		<div class="container">
 
-			<?php if ( wpcharming_option('footer_newsletter') && wpcharming_option('newsletter_type') == 'feedburner' ) { ?>
+			<?php if ( law16_option('footer_newsletter') && law16_option('newsletter_type') == 'feedburner' ) { ?>
 			<div class="footer-subscribe">
 				<form action="http://feedburner.google.com/fb/a/mailverify" method="post" target="_blank" >
 						<?php if ( $wpc_option['newsletter_text'] ) { ?> <label for="email_subscribe"><?php echo esc_attr($wpc_option['newsletter_text']); ?></label> <?php } ?>
-						<input type="email" placeholder="<?php echo __('Enter your e-mail address', 'wpcharming') ?>" value="" name="email" id="email_subscribe" class="subs_email_input" required="required">
-						<input type="submit" value="<?php _e('Subscribe','wpcharming'); ?>" class="btn btn-light">
+						<input type="email" placeholder="<?php echo __('Enter your e-mail address', 'law16') ?>" value="" name="email" id="email_subscribe" class="subs_email_input" required="required">
+						<input type="submit" value="<?php _e('Subscribe','law16'); ?>" class="btn btn-light">
 						<input type="hidden" value="<?php echo esc_attr($wpc_option['feedburner_id']); ?>" name="uri"/>
 						<input type="hidden" name="loc" value="en_US"/>
 				</form>
 			</div>
 			<?php } ?>
 
-			<?php if ( wpcharming_option('footer_newsletter') && wpcharming_option('newsletter_type') == 'mailchimp' ) { ?>
+			<?php if ( law16_option('footer_newsletter') && law16_option('newsletter_type') == 'mailchimp' ) { ?>
 			<div class="footer-subscribe">
 				<form action="<?php echo esc_url($wpc_option['mailchimp_url']); ?>" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="" target="_blank" novalidate>
 					<?php if ( $wpc_option['newsletter_text'] ) { ?> <label for="email_subscribe"><?php echo esc_attr($wpc_option['newsletter_text']); ?></label> <?php } ?>
-					<input type="text" value="" name="EMAIL" class="subs_input" id="mce-EMAIL" placeholder="<?php echo __('Enter your e-mail address', 'wpcharming') ?>" required="true">
-					<input type="submit" name="subscribe" value="<?php _e('Subscribe','wpcharming'); ?>" class="btn btn-light">
+					<input type="text" value="" name="EMAIL" class="subs_input" id="mce-EMAIL" placeholder="<?php echo __('Enter your e-mail address', 'law16') ?>" required="true">
+					<input type="submit" name="subscribe" value="<?php _e('Subscribe','law16'); ?>" class="btn btn-light">
 				 </form>
 			</div>
 			<?php } ?>
@@ -84,10 +84,11 @@ global $wpc_option;
 			<div class="site-info clearfix">
 				<div class="copy_text">
 					<?php
-					if ( wpcharming_option('footer_copyright') == '' ) {
-						printf( __( 'Copyright &copy; 2015 %1$s. Theme by %2$s.', 'wpcharming' ), get_bloginfo('name'), '<a href="'. esc_url( __( 'http://www.wpcharming.com/', 'wpcharming' ) ) .'" rel="designer">WPCharming</a>' ); 
+					if ( law16_option('footer_copyright') == '' ) {
+						/* cleanup: */
+						printf( __( 'Copyright &copy; 2015 %1$s.', 'law16' ), '<a href="'. esc_url( __( get_home_url() , 'law16' ) ) .'" rel="designer">' . get_bloginfo('name') . '</a>' ); 
 					} else {
-						echo wp_kses_post( wpcharming_option('footer_copyright') );
+						echo wp_kses_post( law16_option('footer_copyright') );
 					}
 					?>
 				</div>

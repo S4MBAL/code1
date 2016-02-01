@@ -84,7 +84,7 @@ class Radium_Theme_Importer {
    */
     public function add_admin() {
 
-        add_submenu_page('tools.php', "One Click Demo Data Importer", "Demo Data Importer", 'switch_themes', 'wpcharming_demo_importer', array($this, 'demo_installer'));
+        add_submenu_page('tools.php', "One Click Demo Data Importer", "Demo Data Importer", 'switch_themes', 'law16_demo_importer', array($this, 'demo_installer'));
 
     }
 

@@ -1,9 +1,9 @@
 <?php
 /**
- * @package WPCharming
+ * @package Law16
  */
 
-$blog_single_thumb = wpcharming_option('blog_single_thumb');
+$blog_single_thumb = law16_option('blog_single_thumb');
 
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -12,7 +12,7 @@ $blog_single_thumb = wpcharming_option('blog_single_thumb');
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
 		<div class="entry-meta">
-			<?php wpcharming_posted_on(); ?>
+			<?php law16_posted_on(); ?>
 		</div><!-- .entry-meta -->
 
 	</header><!-- .entry-header -->
@@ -31,13 +31,13 @@ $blog_single_thumb = wpcharming_option('blog_single_thumb');
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'wpcharming' ),
+				'before' => '<div class="page-links">' . __( 'Pages:', 'law16' ),
 				'after'  => '</div>',
 			) );
 		?>
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<?php wpcharming_entry_footer(); ?>
+		<?php law16_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

@@ -4,25 +4,25 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package WPCharming
+ * @package Law16
  */
 
 /**
  * Render WordPress title ( Backwards compatibility for WP version < 4.1 )
  */
 if ( ! function_exists( '_wp_render_title_tag' ) ) :
-    function wpcharming_render_title() {
+    function law16_render_title() {
 	?>
 	<title><?php wp_title( '|', true, 'right' ); ?></title>
 	<?php
     }
-    add_action( 'wp_head', 'wpcharming_render_title' );
+    add_action( 'wp_head', 'law16_render_title' );
 endif;
 
 /**
  * Display the page header at the top of single page.
  */
-function wpcharming_get_page_header($postID) {
+function law16_get_page_header($postID) {
 	$enable_page_header    = get_post_meta( $postID, '_wpc_enable_page_header', true );
 	$header_title          = get_post_meta( $postID, '_wpc_header_title', true );
 	$header_subtitle       = get_post_meta( $postID, '_wpc_header_subtitle', true );
@@ -93,7 +93,7 @@ function wpcharming_get_page_header($postID) {
 /**
  * Display navigation to next/previous set of posts when applicable.
  */
-function wpcharming_paging_nav() {
+function law16_paging_nav() {
 	// Don't print empty markup if there's only one page.
 	if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
 		return;
@@ -116,21 +116,21 @@ function wpcharming_paging_nav() {
 
 	// Set up paginated links.
 	$links = paginate_links( array(
-		'wpcharming'     => $pagenum_link,
+		'law16'     => $pagenum_link,
 		'format'    => $format,
 		'total'     => $GLOBALS['wp_query']->max_num_pages,
 		'current'   => $paged,
 		'mid_size'  => 1,
 		'add_args'  => array_map( 'urlencode', $query_args ),
-		'prev_text' => __( '&larr; Previous', 'wpcharming' ),
-		'next_text' => __( 'Next &rarr;', 'wpcharming' ),
+		'prev_text' => __( '&larr; Previous', 'law16' ),
+		'next_text' => __( 'Next &rarr;', 'law16' ),
 	) );
 
 	if ( $links ) :
 
 	?>
 	<nav class="navigation paging-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'wpcharming' ); ?></h1>
+		<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'law16' ); ?></h1>
 		<div class="pagination loop-pagination">
 			<?php echo $links; ?>
 		</div><!--/ .pagination -->
@@ -140,11 +140,11 @@ function wpcharming_paging_nav() {
 }
 
 
-if ( ! function_exists( 'wpcharming_post_nav' ) ) :
+if ( ! function_exists( 'law16_post_nav' ) ) :
 /**
  * Display navigation to next/previous post when applicable.
  */
-function wpcharming_post_nav() {
+function law16_post_nav() {
 	// Don't print empty markup if there's nowhere to navigate.
 	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
 	$next     = get_adjacent_post( false, '', false );
@@ -154,11 +154,11 @@ function wpcharming_post_nav() {
 	}
 	?>
 	<nav class="navigation post-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'wpcharming' ); ?></h1>
+		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'law16' ); ?></h1>
 		<div class="nav-links">
 			<?php
-				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span>&nbsp;%title', 'Previous post link', 'wpcharming' ) );
-				next_post_link(     '<div class="nav-next">%link</div>',     _x( '%title&nbsp;<span class="meta-nav">&rarr;</span>', 'Next post link',     'wpcharming' ) );
+				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span>&nbsp;%title', 'Previous post link', 'law16' ) );
+				next_post_link(     '<div class="nav-next">%link</div>',     _x( '%title&nbsp;<span class="meta-nav">&rarr;</span>', 'Next post link',     'law16' ) );
 			?>
 		</div><!-- .nav-links -->
 	</nav><!-- .navigation -->
@@ -166,11 +166,11 @@ function wpcharming_post_nav() {
 }
 endif;
 
-if ( ! function_exists( 'wpcharming_posted_on' ) ) :
+if ( ! function_exists( 'law16_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  */
-function wpcharming_posted_on() {
+function law16_posted_on() {
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 		//$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
@@ -184,7 +184,7 @@ function wpcharming_posted_on() {
 	);
 
 	$posted_on = sprintf(
-		_x( ' on %s', 'post date', 'wpcharming' ),
+		_x( ' on %s', 'post date', 'law16' ),
 		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 	);
 
@@ -193,20 +193,20 @@ function wpcharming_posted_on() {
 	}
 
 	$byline = sprintf(
-		_x( 'Posted by %s', 'post author', 'wpcharming' ),
+		_x( 'Posted by %s', 'post author', 'law16' ),
 		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 	);
 
 	echo '<span class="byline"> ' . $byline . '</span><span class="posted-on">' . $posted_on . '</span>';
 
-	$categories_list = get_the_category_list( __( ', ', 'wpcharming' ) );
-	if ( $categories_list && wpcharming_categorized_blog() ) {
-		//printf( '<span class="cat-links">' . __( ' in %1$s', 'wpcharming' ) . '</span>', $categories_list );
+	$categories_list = get_the_category_list( __( ', ', 'law16' ) );
+	if ( $categories_list && law16_categorized_blog() ) {
+		//printf( '<span class="cat-links">' . __( ' in %1$s', 'law16' ) . '</span>', $categories_list );
 	}
 
 	if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-		echo '<span class="comments-link">'. __(' with ', 'wpcharming');
-		comments_popup_link( __( '0 Comment', 'wpcharming' ), __( '1 Comment', 'wpcharming' ), __( '% Comments', 'wpcharming' ) );
+		echo '<span class="comments-link">'. __(' with ', 'law16');
+		comments_popup_link( __( '0 Comment', 'law16' ), __( '1 Comment', 'law16' ), __( '% Comments', 'law16' ) );
 		echo '</span>';
 	}
 
@@ -217,28 +217,28 @@ endif;
 /**
  * Control Excerpt Length using Filters
  */
-function wpcharming_excerpt_length( $length ) {
+function law16_excerpt_length( $length ) {
 	return 20;
 }
-add_filter( 'excerpt_length', 'wpcharming_excerpt_length', 999 );
+add_filter( 'excerpt_length', 'law16_excerpt_length', 999 );
 
 /**
  * Remove […] string using Filters
  */
-function wpcharming_excerpt_more( $more ) {
+function law16_excerpt_more( $more ) {
 	return ' ...';
 }
-add_filter('excerpt_more', 'wpcharming_excerpt_more');
+add_filter('excerpt_more', 'law16_excerpt_more');
 
 
 
-if ( ! function_exists( 'wpcharming_entry_footer' ) ) :
+if ( ! function_exists( 'law16_entry_footer' ) ) :
 /**
  * Prints HTML with meta information for the categories, tags and comments.
  */
-function wpcharming_entry_footer() {
+function law16_entry_footer() {
 	
-	$blog_single_author = wpcharming_option('blog_single_author');
+	$blog_single_author = law16_option('blog_single_author');
 	?>
 	
 	<?php
@@ -247,10 +247,10 @@ function wpcharming_entry_footer() {
 	$meta_text     = '';
 
 	if ( $category_list ) {
-		$meta_text .= __( '<i class="fa fa-file"></i> ', 'wpcharming' ) . '%1$s';
+		$meta_text .= __( '<i class="fa fa-file"></i> ', 'law16' ) . '%1$s';
 	}
 	if ( $tag_list ) {
-		$meta_text .= __( '<i class="fa fa-tag"></i> ', 'wpcharming' ) . '%2$s';
+		$meta_text .= __( '<i class="fa fa-tag"></i> ', 'law16' ) . '%2$s';
 	}
 	printf(
 		$meta_text,
@@ -274,7 +274,7 @@ function wpcharming_entry_footer() {
 		<div class="entry-author-byline">
 			<?php
 			printf(
-				_x( 'Written by %s', 'author byline', 'wpcharming' ),
+				_x( 'Written by %s', 'author byline', 'law16' ),
 				sprintf(
 					'<a class="vcard" href="%1$s">%2$s</a>',
 					esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
@@ -308,43 +308,43 @@ if ( ! function_exists( 'the_archive_title' ) ) :
  */
 function the_archive_title( $before = '', $after = '' ) {
 	if ( is_category() ) {
-		$title = sprintf( __( 'Category: %s', 'wpcharming' ), single_cat_title( '', false ) );
+		$title = sprintf( __( 'Category: %s', 'law16' ), single_cat_title( '', false ) );
 	} elseif ( is_tag() ) {
-		$title = sprintf( __( 'Tag: %s', 'wpcharming' ), single_tag_title( '', false ) );
+		$title = sprintf( __( 'Tag: %s', 'law16' ), single_tag_title( '', false ) );
 	} elseif ( is_author() ) {
-		$title = sprintf( __( 'Author: %s', 'wpcharming' ), '<span class="vcard">' . get_the_author() . '</span>' );
+		$title = sprintf( __( 'Author: %s', 'law16' ), '<span class="vcard">' . get_the_author() . '</span>' );
 	} elseif ( is_year() ) {
-		$title = sprintf( __( 'Year: %s', 'wpcharming' ), get_the_date( _x( 'Y', 'yearly archives date format', 'wpcharming' ) ) );
+		$title = sprintf( __( 'Year: %s', 'law16' ), get_the_date( _x( 'Y', 'yearly archives date format', 'law16' ) ) );
 	} elseif ( is_month() ) {
-		$title = sprintf( __( 'Month: %s', 'wpcharming' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'wpcharming' ) ) );
+		$title = sprintf( __( 'Month: %s', 'law16' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'law16' ) ) );
 	} elseif ( is_day() ) {
-		$title = sprintf( __( 'Day: %s', 'wpcharming' ), get_the_date( _x( 'F j, Y', 'daily archives date format', 'wpcharming' ) ) );
+		$title = sprintf( __( 'Day: %s', 'law16' ), get_the_date( _x( 'F j, Y', 'daily archives date format', 'law16' ) ) );
 	} elseif ( is_tax( 'post_format', 'post-format-aside' ) ) {
-		$title = _x( 'Asides', 'post format archive title', 'wpcharming' );
+		$title = _x( 'Asides', 'post format archive title', 'law16' );
 	} elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) {
-		$title = _x( 'Galleries', 'post format archive title', 'wpcharming' );
+		$title = _x( 'Galleries', 'post format archive title', 'law16' );
 	} elseif ( is_tax( 'post_format', 'post-format-image' ) ) {
-		$title = _x( 'Images', 'post format archive title', 'wpcharming' );
+		$title = _x( 'Images', 'post format archive title', 'law16' );
 	} elseif ( is_tax( 'post_format', 'post-format-video' ) ) {
-		$title = _x( 'Videos', 'post format archive title', 'wpcharming' );
+		$title = _x( 'Videos', 'post format archive title', 'law16' );
 	} elseif ( is_tax( 'post_format', 'post-format-quote' ) ) {
-		$title = _x( 'Quotes', 'post format archive title', 'wpcharming' );
+		$title = _x( 'Quotes', 'post format archive title', 'law16' );
 	} elseif ( is_tax( 'post_format', 'post-format-link' ) ) {
-		$title = _x( 'Links', 'post format archive title', 'wpcharming' );
+		$title = _x( 'Links', 'post format archive title', 'law16' );
 	} elseif ( is_tax( 'post_format', 'post-format-status' ) ) {
-		$title = _x( 'Statuses', 'post format archive title', 'wpcharming' );
+		$title = _x( 'Statuses', 'post format archive title', 'law16' );
 	} elseif ( is_tax( 'post_format', 'post-format-audio' ) ) {
-		$title = _x( 'Audio', 'post format archive title', 'wpcharming' );
+		$title = _x( 'Audio', 'post format archive title', 'law16' );
 	} elseif ( is_tax( 'post_format', 'post-format-chat' ) ) {
-		$title = _x( 'Chats', 'post format archive title', 'wpcharming' );
+		$title = _x( 'Chats', 'post format archive title', 'law16' );
 	} elseif ( is_post_type_archive() ) {
-		$title = sprintf( __( 'Archives: %s', 'wpcharming' ), post_type_archive_title( '', false ) );
+		$title = sprintf( __( 'Archives: %s', 'law16' ), post_type_archive_title( '', false ) );
 	} elseif ( is_tax() ) {
 		$tax = get_taxonomy( get_queried_object()->taxonomy );
 		/* translators: 1: Taxonomy singular name, 2: Current taxonomy term */
-		$title = sprintf( __( '%1$s: %2$s', 'wpcharming' ), $tax->labels->singular_name, single_term_title( '', false ) );
+		$title = sprintf( __( '%1$s: %2$s', 'law16' ), $tax->labels->singular_name, single_term_title( '', false ) );
 	} else {
-		$title = __( 'Archives', 'wpcharming' );
+		$title = __( 'Archives', 'law16' );
 	}
 
 	/**
@@ -392,8 +392,8 @@ endif;
  *
  * @return bool
  */
-function wpcharming_categorized_blog() {
-	if ( false === ( $all_the_cool_cats = get_transient( 'wpcharming_categories' ) ) ) {
+function law16_categorized_blog() {
+	if ( false === ( $all_the_cool_cats = get_transient( 'law16_categories' ) ) ) {
 		// Create an array of all the categories that are attached to posts.
 		$all_the_cool_cats = get_categories( array(
 			'fields'     => 'ids',
@@ -406,42 +406,42 @@ function wpcharming_categorized_blog() {
 		// Count the number of categories that are attached to the posts.
 		$all_the_cool_cats = count( $all_the_cool_cats );
 
-		set_transient( 'wpcharming_categories', $all_the_cool_cats );
+		set_transient( 'law16_categories', $all_the_cool_cats );
 	}
 
 	if ( $all_the_cool_cats > 1 ) {
-		// This blog has more than 1 category so wpcharming_categorized_blog should return true.
+		// This blog has more than 1 category so law16_categorized_blog should return true.
 		return true;
 	} else {
-		// This blog has only 1 category so wpcharming_categorized_blog should return false.
+		// This blog has only 1 category so law16_categorized_blog should return false.
 		return false;
 	}
 }
 
 /**
- * Flush out the transients used in wpcharming_categorized_blog.
+ * Flush out the transients used in law16_categorized_blog.
  */
-function wpcharming_category_transient_flusher() {
+function law16_category_transient_flusher() {
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 		return;
 	}
 	// Like, beat it. Dig?
-	delete_transient( 'wpcharming_categories' );
+	delete_transient( 'law16_categories' );
 }
-add_action( 'edit_category', 'wpcharming_category_transient_flusher' );
-add_action( 'save_post',     'wpcharming_category_transient_flusher' );
+add_action( 'edit_category', 'law16_category_transient_flusher' );
+add_action( 'save_post',     'law16_category_transient_flusher' );
 
 /**
  * Let the sidebar display by Theme Option and Page Settings.
  */
-function wpcharming_get_sidebar() {
+function law16_get_sidebar() {
 	global $post;
 	global $woocommerce;
 	$post_type              = get_post_type($post);
-	$archive_layout_setting = wpcharming_option('archive_layout');
-	$page_layout_admin      = wpcharming_option('page_layout');
-	$blog_layout_admin      = wpcharming_option('blog_layout');
-	$single_shop_layout     = wpcharming_option('single_shop_layout');
+	$archive_layout_setting = law16_option('archive_layout');
+	$page_layout_admin      = law16_option('page_layout');
+	$blog_layout_admin      = law16_option('blog_layout');
+	$single_shop_layout     = law16_option('single_shop_layout');
 
 	// Pages
 	if ( is_singular('page') ){
@@ -498,10 +498,10 @@ function wpcharming_get_sidebar() {
 /**
  * Let the sidebar display on frontpage if Front page set as latest post
  */
-function wpcharming_frontpage_sidebar() {
+function law16_frontpage_sidebar() {
 	$display_sidebar        = false;
-	$archive_layout_setting = wpcharming_option('archive_layout');
-	$blog_layout_setting    = wpcharming_option('blog_layout');
+	$archive_layout_setting = law16_option('archive_layout');
+	$blog_layout_setting    = law16_option('blog_layout');
 
 	if ( is_front_page() ) {
 		if ( $archive_layout_setting == 'right-sidebar' || $archive_layout_setting == 'left-sidebar' ) {
@@ -525,18 +525,18 @@ function wpcharming_frontpage_sidebar() {
 }
 
 
-if ( ! function_exists( 'wpcharming_comment' ) ) :
+if ( ! function_exists( 'law16_comment' ) ) :
 /**
  * Template for comments and pingbacks.
  *
  * To override this walker in a child theme without modifying the comments template
- * simply create your own wpcharming_comment(), and that function will be used instead.
+ * simply create your own law16_comment(), and that function will be used instead.
  *
  * Used as a callback by wp_list_comments() for displaying the comments.
  *
  * @return void
  */
-function wpcharming_comment( $comment, $args, $depth ) {
+function law16_comment( $comment, $args, $depth ) {
     $GLOBALS['comment'] = $comment;
     switch ( $comment->comment_type ) :
         case 'pingback' :
@@ -544,7 +544,7 @@ function wpcharming_comment( $comment, $args, $depth ) {
         // Display trackbacks differently than normal comments.
     ?>
     <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-        <p><?php _e( 'Pingback:', 'wpcharming' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)', 'wpcharming' ), '<span class="edit-link">', '</span>' ); ?></p>
+        <p><?php _e( 'Pingback:', 'law16' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)', 'law16' ), '<span class="edit-link">', '</span>' ); ?></p>
     <?php
             break;
         default :
@@ -563,21 +563,21 @@ function wpcharming_comment( $comment, $args, $depth ) {
                         printf( '<cite><b class="fn">%1$s</b> %2$s</cite>',
                             get_comment_author_link(),
                             // If current post author is also comment author, make it known visually.
-                            ( $comment->user_id === $post->post_author ) ? '<span>' . __( 'Post author', 'wpcharming' ) . '</span>' : ''
+                            ( $comment->user_id === $post->post_author ) ? '<span>' . __( 'Post author', 'law16' ) . '</span>' : ''
                         );
                         printf( '<a class="comment-time" href="%1$s"><time datetime="%2$s">%3$s</time></a>',
                             esc_url( get_comment_link( $comment->comment_ID ) ),
                             get_comment_time( 'c' ),
                             /* translators: 1: date, 2: time */
-                            sprintf( __( '%1$s', 'wpcharming' ), get_comment_date() )
+                            sprintf( __( '%1$s', 'law16' ), get_comment_date() )
                         );
-                        comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'wpcharming' ), 'after' => '', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) );
-                        edit_comment_link( __( 'Edit', 'wpcharming' ), '<span class="edit-link">', '</span>' );
+                        comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'law16' ), 'after' => '', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) );
+                        edit_comment_link( __( 'Edit', 'law16' ), '<span class="edit-link">', '</span>' );
                     ?>
                 </header><!-- .comment-meta -->
 
                 <?php if ( '0' == $comment->comment_approved ) : ?>
-                    <p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'wpcharming' ); ?></p>
+                    <p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'law16' ); ?></p>
                 <?php endif; ?>
 
                 <div class="comment-content entry-content">
@@ -597,44 +597,44 @@ endif;
 /**
  * Output html5 js file for ie9.
  */
-function wpcharming_html5() {
+function law16_html5() {
 	echo '<!--[if lt IE 9]>';
 	echo '<script src="'. esc_url( get_template_directory_uri() ) .'/assets/js/html5.min.js"></script>';
 	echo '<![endif]-->';
 }
-add_action( 'wp_head', 'wpcharming_html5' );
+add_action( 'wp_head', 'law16_html5' );
 
 /**
  * Output site favicon to wp_head hook.
  */
-function wpcharming_favicons() {
+function law16_favicons() {
 	$favicons = null;
 
-	if ( wpcharming_option('site_favicon', '', 'url') ) $favicons .= '
-	<link rel="shortcut icon" href="'. esc_url(wpcharming_option('site_favicon', '', 'url')) .'">';
+	if ( law16_option('site_favicon', '', 'url') ) $favicons .= '
+	<link rel="shortcut icon" href="'. esc_url(law16_option('site_favicon', '', 'url')) .'">';
 
-	if ( wpcharming_option('site_iphone_icon', '', 'url') ) $favicons .= '
-	<link rel="apple-touch-icon-precomposed" href="'. esc_url(wpcharming_option('site_iphone_icon', '', 'url')) .'">';
+	if ( law16_option('site_iphone_icon', '', 'url') ) $favicons .= '
+	<link rel="apple-touch-icon-precomposed" href="'. esc_url(law16_option('site_iphone_icon', '', 'url')) .'">';
 
-	if ( wpcharming_option('site_iphone_icon_retina', '', 'url') ) $favicons .= '
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="'. esc_url(wpcharming_option('site_iphone_icon_retina', '', 'url')) .'">';
+	if ( law16_option('site_iphone_icon_retina', '', 'url') ) $favicons .= '
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="'. esc_url(law16_option('site_iphone_icon_retina', '', 'url')) .'">';
 
-	if ( wpcharming_option('site_ipad_icon', '', 'url') ) $favicons .= '
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="'. esc_url(wpcharming_option('site_ipad_icon', '', 'url')) .'">';
+	if ( law16_option('site_ipad_icon', '', 'url') ) $favicons .= '
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="'. esc_url(law16_option('site_ipad_icon', '', 'url')) .'">';
 
-	if ( wpcharming_option('site_ipad_icon_retina', '', 'url') ) $favicons .= '
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="'. esc_url(wpcharming_option('site_ipad_icon_retina', '', 'url')) .'">';
+	if ( law16_option('site_ipad_icon_retina', '', 'url') ) $favicons .= '
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="'. esc_url(law16_option('site_ipad_icon_retina', '', 'url')) .'">';
 
 	echo $favicons;
 }
-add_action( 'wp_head', 'wpcharming_favicons' );
+add_action( 'wp_head', 'law16_favicons' );
 
 /**
  * Output Custom CSS to wp_head hook.
  */
-function wpcharming_custom_css() {
+function law16_custom_css() {
 	$styles     = null;
-	$custom_css = wpcharming_option('site_css');
+	$custom_css = law16_option('site_css');
 	
 	if ( $custom_css !== '' ) $styles .= $custom_css;
 
@@ -643,32 +643,32 @@ function wpcharming_custom_css() {
 	if ( !empty( $custom_css ) ) echo $css_output;
 
 }
-add_action( 'wp_head', 'wpcharming_custom_css' );
+add_action( 'wp_head', 'law16_custom_css' );
 
 /**
  * Output Header Tracking Code to wp_head hook.
  */
-function wpcharming_header_code() {
-	$site_header_tracking = wpcharming_option('site_header_tracking');
+function law16_header_code() {
+	$site_header_tracking = law16_option('site_header_tracking');
 	if ( $site_header_tracking !== '' ) echo $site_header_tracking;
 }
-add_action( 'wp_head', 'wpcharming_header_code' );
+add_action( 'wp_head', 'law16_header_code' );
 
 /**
  * Output Footer Tracking Code to wp_footer hook.
  */
-function wpcharming_footer_code() {
-	$site_footer_tracking = wpcharming_option('site_footer_tracking');
+function law16_footer_code() {
+	$site_footer_tracking = law16_option('site_footer_tracking');
 	if ( $site_footer_tracking !== '' ) echo $site_footer_tracking;
 }
-add_action( 'wp_footer', 'wpcharming_footer_code' );
+add_action( 'wp_footer', 'law16_footer_code' );
 
 
 /**
  * Modified Gallery Shortcode
  */
 
-function wpcharming_post_gallery($output, $attr) {
+function law16_post_gallery($output, $attr) {
     global $post;
 
     static $instance = 0;
@@ -737,8 +737,8 @@ function wpcharming_post_gallery($output, $attr) {
     // Custom Lightbox
     $gallery_lightbox = null;
     if ( isset( $attr['link'] ) && $attr['link'] == 'file' ) { 
-    	//wp_enqueue_script( 'wpcharming-magnific-popup' );
-    	//wp_enqueue_style( 'wpcharming-magnific-style' );
+    	//wp_enqueue_script( 'law16-magnific-popup' );
+    	//wp_enqueue_style( 'law16-magnific-style' );
     	$gallery_lightbox = 'gallery-lightbox';
     }
     
@@ -810,12 +810,12 @@ function wpcharming_post_gallery($output, $attr) {
 
     return $output;
 }
-//add_filter("post_gallery", "wpcharming_post_gallery",10,2);
+//add_filter("post_gallery", "law16_post_gallery",10,2);
 
 /**
  * Output BreadCrumb.
  */
-function wpcharming_breadcrumb() {
+function law16_breadcrumb() {
 	if( function_exists('bcn_display') ) {
 		if ( is_front_page() && is_home() ) {
 			// Default homepage
@@ -845,10 +845,10 @@ function wpcharming_breadcrumb() {
 /**
  * Display list child page
  */
-function wpcharming_list_child_pages( $pageID, $order, $orderby, $exclude, $layout, $column, $number, $readmore_text ) {
+function law16_list_child_pages( $pageID, $order, $orderby, $exclude, $layout, $column, $number, $readmore_text ) {
 
 	if ( $readmore_text == '' ) {
-		$readmore_text = __('Read More', 'wpcharming');
+		$readmore_text = __('Read More', 'law16');
 	}
 
 	$col_class = $thumbnail = '';
@@ -958,7 +958,7 @@ function wpcharming_list_child_pages( $pageID, $order, $orderby, $exclude, $layo
 		</div>';
 
 		else:
-			$output .= __( 'Sorry, there is no child pages under your selected page.', 'wpcharming' );
+			$output .= __( 'Sorry, there is no child pages under your selected page.', 'law16' );
 	endif;
 
 	wp_reset_postdata();

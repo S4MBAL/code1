@@ -2,21 +2,21 @@
 /**
  * The template for displaying search results pages.
  *
- * @package WPCharming
+ * @package Law16
  */
 
 get_header(); ?>
 		
-		<?php wpcharming_breadcrumb(); ?>
+		<?php law16_breadcrumb(); ?>
 
-		<div id="content-wrap" class="container <?php echo wpcharming_get_layout_class(); ?>">
+		<div id="content-wrap" class="container <?php echo law16_get_layout_class(); ?>">
 			<div id="primary" class="content-area">
 				<main id="main" class="site-main" role="main">
 
 					<?php if ( have_posts() ) : ?>
 
 						<header class="page-header">
-							<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'wpcharming' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+							<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'law16' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 						</header><!-- .page-header -->
 
 						<?php /* Start the Loop */ ?>
@@ -33,7 +33,7 @@ get_header(); ?>
 
 						<?php endwhile; ?>
 
-						<?php wpcharming_paging_nav(); ?>
+						<?php law16_paging_nav(); ?>
 
 					<?php else : ?>
 
@@ -44,7 +44,7 @@ get_header(); ?>
 				</main><!-- #main -->
 			</div><!-- #primary -->
 
-			<?php echo wpcharming_get_sidebar(); ?>
+			<?php echo law16_get_sidebar(); ?>
 					
 		</div> <!-- /#content-wrap -->
 

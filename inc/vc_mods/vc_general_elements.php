@@ -270,7 +270,7 @@ function wpc_shortcode_childpage($atts, $content = null) {
 		if ( $widget_title ) $output .= '
 		<h3 class="builder-heading">'. wp_kses_post($widget_title) .'</h3>';
 
-			$output .= wpcharming_list_child_pages( $parrent_page_id, $order, $orderby, $exclude, $layout, $column, $number, $readmore_text );
+			$output .= law16_list_child_pages( $parrent_page_id, $order, $orderby, $exclude, $layout, $column, $number, $readmore_text );
 
 	$output .= '
 	</div>';
@@ -858,7 +858,7 @@ function wpc_shortcode_recent_news($atts, $content = null) {
 
 
 	if ( $readmore_text == '' ) {
-		$readmore_text = __('Read More', 'wpcharming');
+		$readmore_text = __('Read More', 'law16');
 	}
 
 	$col_class = $thumbnail = '';
@@ -948,15 +948,15 @@ function wpc_shortcode_recent_news($atts, $content = null) {
 
 					if ( comments_open() ) {
 						if ( $num_comments == 0 ) {
-							$comments = __('No Comments', 'wpcharming');
+							$comments = __('No Comments', 'law16');
 						} elseif ( $num_comments > 1 ) {
-							$comments = $num_comments . __(' Comments', 'wpcharming');
+							$comments = $num_comments . __(' Comments', 'law16');
 						} else {
 							$comments = __('1 Comment');
 						}
 						$write_comments = '<a href="' . get_comments_link() .'">'. $comments.'</a>';
 					} else {
-						$write_comments =  __('Comments off.', 'wpcharming');
+						$write_comments =  __('Comments off.', 'law16');
 					}
 
 					$output .= '
@@ -994,7 +994,7 @@ function wpc_shortcode_recent_news($atts, $content = null) {
 				</div>';
 
 				else:
-					$output .= __( 'Sorry, there is no child pages under your selected page.', 'wpcharming' );
+					$output .= __( 'Sorry, there is no child pages under your selected page.', 'law16' );
 			endif;
 
 			wp_reset_postdata();

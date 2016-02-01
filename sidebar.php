@@ -2,7 +2,7 @@
 /**
  * The sidebar containing the main widget area.
  *
- * @package WPCharming
+ * @package Law16
  */
 ?>
 <div id="secondary" class="widget-area sidebar" role="complementary">

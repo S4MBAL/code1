@@ -313,7 +313,8 @@
                     $this->get_options();
 
                     // Tracking
-                    $this->_tracking();
+                    /* cleanup: */
+                    // $this->_tracking();
 
                     // Set option with defaults
                     //add_action( 'init', array( &$this, '_set_default_options' ), 101 );
@@ -472,7 +473,7 @@
                     // Save defaults to the DB on it if empty
                     'footer_credit'             => '',
                     'async_typography'          => false,
-                    'disable_google_fonts_link' => false,
+                    'disable_google_fonts_link' => true,/* cleanup: */
                     'class'                     => '',
                     // Class that gets appended to all redux-containers
                     'admin_bar'                 => true,
@@ -3486,7 +3487,7 @@
                          *
                          * @param string translated "settings saved" text
                          */
-                        echo '<div class="saved_notice admin-notice notice-green"><strong>' . apply_filters( "redux-saved-text-{$this->args['opt_name']}", __( 'Settings Saved! - W P L O C K E R .C O M', 'redux-framework' ) ) . '</strong></div>';
+                        echo '<div class="saved_notice admin-notice notice-green"><strong>' . apply_filters( "redux-saved-text-{$this->args['opt_name']}", __( 'Settings Saved!', 'redux-framework' ) ) . '</strong></div>';/* cleanup: */
                     }
                     unset( $this->transients['last_save_mode'] );
 
@@ -3504,7 +3505,7 @@
                  *
                  * @param string translated "settings have changed" text
                  */
-                echo '<div class="redux-save-warn notice-yellow"><strong>' . apply_filters( "redux-changed-text-{$this->args['opt_name']}", __( 'Settings have changed, you should save them! - VV P L O C K E R .C O M ', 'redux-framework' ) ) . '</strong></div>';
+                echo '<div class="redux-save-warn notice-yellow"><strong>' . apply_filters( "redux-changed-text-{$this->args['opt_name']}", __( 'Settings have changed, you should save them!', 'redux-framework' ) ) . '</strong></div>';/* cleanup: */
 
                 /**
                  * action 'redux/options/{opt_name}/errors'

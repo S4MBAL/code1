@@ -1,4 +1,4 @@
-# Copyright (C) 2015 WPCharming
+# Copyright (C) 2015
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
@@ -91,11 +91,7 @@ msgid "Subscribe"
 msgstr ""
 
 #: src/footer.php:88
-msgid "Copyright &copy; 2015 %1$s. Theme by %2$s."
-msgstr ""
-
-#: src/footer.php:88
-msgid "http://www.wpcharming.com/"
+msgid "Copyright &copy; 2015 %1$s."
 msgstr ""
 
 #: src/functions.php:67
@@ -3448,22 +3444,6 @@ msgstr ""
 
 #. Theme Name of the plugin/theme
 msgid "HumanRights"
-msgstr ""
-
-#. Theme URI of the plugin/theme
-msgid "http://www.wpcharming.com/themes/humanrights"
-msgstr ""
-
-#. Description of the plugin/theme
-msgid "Premium Lawyer & Attorney WordPress Theme"
-msgstr ""
-
-#. Author of the plugin/theme
-msgid "WPCharming"
-msgstr ""
-
-#. Author URI of the plugin/theme
-msgid "http://www.wpcharming.com"
 msgstr ""
 
 #. Template Name of the plugin/theme

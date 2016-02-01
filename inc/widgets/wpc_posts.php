@@ -7,8 +7,8 @@ class Wpc_Posts extends WP_Widget {
 		// Widget actual processes
         parent::__construct(
 	 		'wpc_posts',                                                                // Base ID
-			__('WPC Posts','wpcharming'),                                               // Name
-			array( 'description' => __( 'Eye catching posts widget', 'wpcharming' ), )  // Args
+			__('WPC Posts','law16'),                                               // Name
+			array( 'description' => __( 'Eye catching posts widget', 'law16' ), )  // Args
 		);
 	}
 
@@ -41,16 +41,16 @@ class Wpc_Posts extends WP_Widget {
         ?>
 
 		<p>
-    		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:','wpcharming'); ?></label> 
+    		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:','law16'); ?></label> 
     		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
         
     	<p>
-    		<label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php echo __('How many posts to show ?' ,'wpcharming') ?></label> 
+    		<label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php echo __('How many posts to show ?' ,'law16') ?></label> 
     		<input class="widefat" id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="text" value="<?php echo esc_attr( $number ); ?>" />
 		</p>
         <p>
-            <label for="<?php echo $this->get_field_id( 'post_order' ); ?>"><?php _e('Posts order:', 'wpcharming') ?></label>
+            <label for="<?php echo $this->get_field_id( 'post_order' ); ?>"><?php _e('Posts order:', 'law16') ?></label>
             <select class="widefat" name="<?php echo $this->get_field_name( 'post_order' );?>" id="<?php echo $this->get_field_id( 'post_order' );?>">
                 <?php foreach ( $post_order_types as $post_order_type=>$post_order_value ) { ?>
                     <option value="<?php echo $post_order_type; ?>" <?php echo ($post_order_type == $instance['post_order']) ? 'selected="selected" ' : '';?>><?php echo $post_order_value; ?></option>

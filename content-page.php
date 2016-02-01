@@ -2,7 +2,7 @@
 /**
  * The template used for displaying page content in page.php
  *
- * @package WPCharming
+ * @package Law16
  */
 ?>
 
@@ -27,7 +27,7 @@
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'wpcharming' ),
+				'before' => '<div class="page-links">' . __( 'Pages:', 'law16' ),
 				'after'  => '</div>',
 			) );
 		?>
